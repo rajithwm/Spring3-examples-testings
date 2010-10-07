@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean class="message.MessageImpl" name="message" >
+        <property name="name" value="Rajith Prasanna" />
+        <property name="age">
+            <value type="int">10</value>
+        </property>
+        <property name="id">
+            <value type="long">150</value>
+        </property>
+
+        <property name="nameList">
+            <list value-type="java.lang.String">
+                <value>rrrr</value>
+                <value>test</value>
+                <null/>
+                <value>uuuuu</value>
+            </list>
+        </property>
+
+        <property name="ageSet">
+            <set>
+                <value>10</value>
+                <value>25</value>
+            </set>
+        </property>
+
+        <property name="messageMap">
+            <map key-type="java.lang.String" value-type="message.MessageImpl">
+                <entry key="rajith" value-ref="messageConstructor" />
+                <entry key="rajith1" value-ref="messageConstructor1" />
+            </map>
+        </property>
+    </bean>
+
+    <bean class="message.MessageImpl" name="messageConstructor">
+        <constructor-arg index="0" type="java.lang.Long" value="255" />
+        <constructor-arg index="1" name="name" value="Wijesooriya"/>
+        <constructor-arg index="2" type="int" value="77" />
+    </bean>
+
+    <bean class="message.MessageImpl" name="messageConstructor1">
+        <constructor-arg index="0" type="java.lang.Long" value="2551" />
+        <constructor-arg index="1" name="name" value="Wijesooriya1"/>
+        <constructor-arg index="2" type="int" value="771" />
+    </bean>
+
+    <bean class="autowire.Teacher" name="teacher">
+        <property name="age" value="10" />
+        <property name="name" value="Rajith" />
+    </bean>
+
+    <bean class="autowire.Teacher" name="mathsteacher">
+        <property name="age" value="10" />
+        <property name="name" value="Prasanna" />
+    </bean>
+
+    <bean class="autowire.ClassRoom" autowire="constructor" name="classRoom">
+    </bean>
+    <bean class="autowire.ClassRoom" autowire="byName" name="classRoom1">
+        <property name="name" value="12C" />
+
+    </bean>
+<!--    <bean class="autowire.ClassRoom" autowire="byType" name="classRoom2">
+        <property name="name" value="12C" />
+    </bean>-->
+
+
+
+    <bean class="autowire.ClassRoom" name="classRoom2">
+        <property name="name" value="Wijesooriya" />
+    </bean>                                            
+
+    <bean class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor"/>
+
+</beans>
